@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Dish
+
+<div class="text-center">
+    <h3 class="display-4">Add a Dish!</h3>
+</div>
+<div class="column-con">
+    <div class="column">
+        <a href="/">Home</a>
+    </div>
+</div>
+<hr>
+    <form asp-action="CreateDish" asp-controller="Home" method="post">
+        <div class="column-con">
+            <div class="column">
+                <p>
+                    <label asp-for="DishName"></label>
+                    <span asp-validation-for="DishName"></span>
+                    <input asp-for="DishName" type="text">
+                </p>
+                <p>
+                    <label asp-for="Calories"></label>
+                    <span asp-validation-for="Calories"></span>
+                    <input asp-for="Calories" type="text">
+                </p>
+                <p>
+                    <label asp-for="Description"></label>
+                    <span asp-validation-for="Description"></span>
+                    <input asp-for="Description" type="text-area">
+                </p>
+            </div>
+            <div class="column">
+                <div class="form-group">
+                    <label asp-for="ChefId">Chef Name</label>
+                    <select asp-for="ChefId"  class="form-control">
+                        @foreach (var chef in @ViewBag.AllChefs)
+                        {
+                            <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
+                        }
+                    </select>
+                </div>
+                <div>
+                    <label asp-for="Tastiness"></label>
+                    <span asp-validation-for="Tastiness"></span>
+                    <select asp-for="Tastiness" id="tastiness">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div>
+                    <button class ="btn btn-success mt-3">Add Dish</button>
+                </div>
+            </div>
+        </div>
+    </form> 
